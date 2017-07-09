@@ -3,5 +3,11 @@
 <h1><%= @event.name %></h1>
 <h5><%= @event.location %></h5>
 <h5><%= @event.start_time %> until <%= @event.end_time %></h5>
+<%= link_to "Guest List", event_attendees_path(@event) %>
+<% @event.attendees.each do |attendee| %>
+<% user_id = attendee.user_id %>
+<%= user = User.find(user_id) %>
+<% end %>
+
 <p>RSVP</p>
 </div>
