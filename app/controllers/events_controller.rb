@@ -9,4 +9,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def attend
+    @event = Event.find(params[:event_id])
+    @user = current_user
+    Attendee.create(user_id: @user.id, event_id: @event.id)
+    redirect_to event_path(@event)
+  end
+
 end

@@ -6,8 +6,9 @@
 <%= link_to "Guest List", event_attendees_path(@event) %>
 <% @event.attendees.each do |attendee| %>
 <% user_id = attendee.user_id %>
-<%= user = User.find(user_id) %>
+<% user = User.find(user_id) %>
+<%= user.name %>
 <% end %>
-
-<p>RSVP</p>
+<br>
+<%= link_to "Click to attend", event_attend_path(@event), method: :get, class: "btn btn-primary" %>
 </div>
