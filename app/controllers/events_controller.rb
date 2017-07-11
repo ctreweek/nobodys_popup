@@ -9,11 +9,39 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+
   def attend
     @event = Event.find(params[:event_id])
     @user = current_user
-    Attendee.create(user_id: @user.id, event_id: @event.id)
-    redirect_to event_path(@event)
+    attendees = []
+    @event.attendees.each do |attendee|
+    attendees << attendee.user_id
+    end
+   if attendees.include?(@user.id)
+    # @event_ids = []
+
+    # @user.attendees.each do |attendee|
+    # @event_ids << attendee.event_id
+    # end
+    # if @event_ids.include?(@event.id)
+      redirect_to event_path(@event)
+    else
+      Attendee.create(user_id: @user.id, event_id: @event.id)
+      redirect_to event_path(@event)
+    end
+  end
+
+  def attending?
+    @event = Event.find(params[:event_id])
+    @user = current_user
+    @event_ids = []
+
+    @user.attendees.each do |attendee|
+    @event_ids << attendee.event_id
+    end
+    if @event_ids.include?(@event.id)
+      return true
+    end
   end
 
 end

@@ -1,3 +1,4 @@
+Attendee.destroy_all
 Event.destroy_all
 
 puts "creating seeds..."
