@@ -3,20 +3,42 @@
 <h1><%= @event.name %></h1>
 <h5><%= @event.location %></h5>
 <h5><%= @event.start_time %> until <%= @event.end_time %></h5>
-<%= link_to "Guest List", event_attendees_path(@event) %>
-<% @event.attendees.each do |attendee| %>
-<% user_id = attendee.user_id %>
-<% user = User.find(user_id) %>
-<%= user.name %>
-<% end %>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Guest List
+</button>
 <br>
 </div>
 
-
+<div class="text-center">
 <% attending = current_user.attendees.select {|attendee| attendee.event_id == @event.id} %>
 <% if attending.length > 0 %>
     <h4 class="text-center">You're already on the guest list</h4>
 <% else %>
     <%= link_to "Click to attend", event_attend_path(@event), method: :get, class: "btn btn-primary" %>
 <% end %>
+</div>
 
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><%=@event.name  %> Guest List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% @event.attendees.each do |attendee| %>
+        <% user_id = attendee.user_id %>
+        <% user = User.find(user_id) %>
+        <%= user.name %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
