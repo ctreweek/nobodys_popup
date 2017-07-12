@@ -10,11 +10,15 @@
 </div>
 
 <div class="text-center">
-<% attending = current_user.attendees.select {|attendee| attendee.event_id == @event.id} %>
-<% if attending.length > 0 %>
+<% if user_signed_in? %>
+  <% attending = current_user.attendees.select {|attendee| attendee.event_id == @event.id} %>
+  <% if attending.length > 0 %>
     <h4 class="text-center">You're already on the guest list</h4>
-<% else %>
+  <% else %>
     <%= link_to "Click to attend", event_attend_path(@event), method: :get, class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <%= link_to "RSVP", new_user_session_path  %>
 <% end %>
 </div>
 
