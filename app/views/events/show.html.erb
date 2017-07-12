@@ -3,7 +3,7 @@
 <h1><%= @event.name %></h1>
 <h5><%= @event.location %></h5>
 <h5><%= @event.start_time %> until <%= @event.end_time %></h5>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
   Guest List
 </button>
 <br>
@@ -19,7 +19,7 @@
 </div>
 
 
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -32,12 +32,11 @@
         <% @event.attendees.each do |attendee| %>
         <% user_id = attendee.user_id %>
         <% user = User.find(user_id) %>
-        <%= user.name %>
+        <%= user.first_name %> <%= user.last_name %>
         <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
