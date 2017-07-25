@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711034330) do
+ActiveRecord::Schema.define(version: 20170725160700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20170711034330) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.string   "location"
     t.string   "start_time"
     t.string   "end_time"
     t.string   "description"
@@ -34,6 +33,9 @@ ActiveRecord::Schema.define(version: 20170711034330) do
     t.datetime "updated_at",  null: false
     t.string   "cost"
     t.integer  "attendee_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
     t.index ["attendee_id"], name: "index_events_on_attendee_id", using: :btree
   end
 
@@ -52,6 +54,11 @@ ActiveRecord::Schema.define(version: 20170711034330) do
     t.datetime "updated_at",                          null: false
     t.string   "last_name"
     t.string   "first_name"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "facebook_picture_url"
+    t.string   "token"
+    t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

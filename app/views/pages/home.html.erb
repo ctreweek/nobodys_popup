@@ -2,6 +2,10 @@
   <div class="banner-content">
     <h1>Nobody's popup party</h1>
     <p>Party for a cause</p>
-    <%= link_to "Events", events_path, class: "btn btn-primary btn-lg"%>
+    <% if Event.count >= 1  %>
+       <%= link_to "TONIGHT'S EVENT", events_path, class: "btn btn-primary btn-lg"%>
+    <% else %>
+      <h4>Stay tuned for the next event!</h4>
+    <% end %>
   </div>
 </div>

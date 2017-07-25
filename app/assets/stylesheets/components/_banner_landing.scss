@@ -1,9 +1,10 @@
 .banner {
-  background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.2) 0%, rgba(67, 67, 67, 0.2) 50%), url('https://images.pexels.com/photos/226037/pexels-photo-226037.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
+  background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.2) 0%, rgba(67, 67, 67, 0.2) 50%), url('https://images.pexels.com/photos/225225/pexels-photo-225225.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
   color: white;
   text-align: center;
   height: 100vh;
   background-size: cover !important;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
