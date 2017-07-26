@@ -16,7 +16,7 @@ class AttendeesController < ApplicationController
   def destroy
     @attendee = Attendee.find(params[:id])
     @attendee.destroy
-    redirect_to root_path
+    redirect_to :back
   end
 
 end
