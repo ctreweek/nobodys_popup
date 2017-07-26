@@ -11,9 +11,11 @@
 
   <div class="text-center">
     <% if user_signed_in? %>
-    <% attending = current_user.attendees.select {|attendee| attendee.event_id == @event.id} %>
-    <% if attending.length > 0 %>
-    <h4 class="text-center">You're already on the guest list</h4>
+    <% @attending = current_user.attendees.select {|attendee| attendee.event_id == @event.id} %>
+    <% if @attending.length > 0 %>
+    <h4 class="text-center">You're on the guest list!</h4>
+    <% @attendee = @attending[0].id %>
+    <%= link_to "Unattend", attendee_path(@attendee), method: :delete %>
     <% else %>
     <%= link_to "Click to attend", event_attend_path(@event), method: :get, class: "btn btn-primary" %>
     <% end %>
@@ -22,6 +24,9 @@
     <% end %>
   </div>
 </div>
+
+
+
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">

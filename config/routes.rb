@@ -17,4 +17,5 @@ Rails.application.routes.draw do
       get 'attend', to: "events#attend"
       resources :attendees, only: [:index, :new, :create]
     end
+    resources :attendees, only: [:destroy]
 end

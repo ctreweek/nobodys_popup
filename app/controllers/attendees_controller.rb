@@ -12,4 +12,11 @@ class AttendeesController < ApplicationController
     @user = User.find(params[:user_id])
     @attendee.save
   end
+
+  def destroy
+    @attendee = Attendee.find(params[:id])
+    @attendee.destroy
+    redirect_to root_path
+  end
+
 end
