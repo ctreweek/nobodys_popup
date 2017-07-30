@@ -13,10 +13,13 @@ Rails.application.routes.draw do
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
     root to: 'pages#home'
+    resources "contacts", only: [:new, :create]
+    get "/about" => "pages#about", as: :about_page
+
+
     resources :events, only: [ :show] do
       get 'attend', to: "events#attend"
       resources :attendees, only: [:index, :new, :create]
     end
     resources :attendees, only: [:destroy]
-    get "/pages/:about" => "pages#show"
 end

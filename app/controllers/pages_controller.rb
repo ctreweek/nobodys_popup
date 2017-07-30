@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
   end
 
-  def show
-    render template: "pages/#{params[:about]}"
+  def about
+    # render template: "pages/#{params[:about]}"
   end
 end
