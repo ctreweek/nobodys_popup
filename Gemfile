@@ -18,7 +18,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem "geocoder"
 gem 'omniauth-facebook'
-gem 'mail_form', '~> 1.5.0.rc'
+# gem 'mail_form'
 
 
 group :development, :test do
